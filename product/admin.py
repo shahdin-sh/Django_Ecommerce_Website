@@ -12,7 +12,15 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class ProductCommentsAdmin(admin.ModelAdmin):
-    list_display = ['text', 'datetime_created', 'is_active', 'parent', 'rate', 'product']
+    list_display = ['replay_or_comment', 'text', 'datetime_created', 'is_active', 'parent', 'rate', 'product']
+
+    def replay_or_comment(self, obj):
+        if not obj.parent:
+            # when a comment does not have a parent it means that comment is a comment.
+            return 'COMMENT'
+        else:
+            # it means that comment is a child of another comment and has a parent.
+            return 'REPLAY'
 
 
 # registering our models ------> first register model then register admin

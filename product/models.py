@@ -28,7 +28,7 @@ class UserComments(models.Model):
         ('4', 'Good'),
         ('5', 'Perfect'),
     ]
-    text = RichTextField()
+    text = models.TextField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
     datetime_created = models.DateTimeField(auto_now_add=True)
