@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+
+{% load crispy_forms_tags %}
+{% block page_title %}
+   Sign up
+{% endblock page_title %}
+
+{% block content %}
+    <h2>Sign up Form</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+         {% for field in form %}
+            <p>
+              {{ field.label_tag }}<br>
+              {{ field }}
+              {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                  {{ error }}
+              {% endfor %}
+            </p>
+         {% endfor %}
+      <button class="mt-3" type="submit" onclick="this.disabled=true;this.form.submit();">Sign up</button>
+    </form>
+{% endblock content %}
+
