@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, UserComments
 from django.core.paginator import Paginator
 from .forms import UserCommentsForm
+from django.contrib.auth import get_user_model
 
 
 def products_list_view(request):
@@ -60,3 +61,18 @@ def product_detail_view(request, pk):
     }
     return render(request, 'product/product_detail_view.html', dic)
 
+
+def edit_user_comments(request, pk, comment_id):
+    user = request.user
+    user_comments = user.comments.filter(is_active=True, parent__isnull=True)
+    getting_particular_user_comment = get_object_or_404(user_comments, pk=comment_id)
+    edit_comment_form = UserCommentsForm(request.POST, instance=getting_particular_user_comment)
+    if edit_comment_form.is_valid():
+        edit_comment_form.save()
+        edit_comment_form = UserCommentsForm()
+        redirect('post_detail_view', pk=pk)
+    # dic for context
+    dic = {
+        'edit_comment_form': edit_comment_form,
+    }
+    return render(request, 'product/edit_product_comments.html', dic)

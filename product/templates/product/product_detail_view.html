@@ -21,14 +21,14 @@
                 <div class="container">
                     <div class="row no-gutters mb--80">
                         <div class="col-12 col-sm-4 product-main-image d-flex align-content-center">
-                            <img class="m-auto" style="max-height: 400px;" src="https://dkstatics-public.digikala.com/digikala-products/8f34ee9823202d09ee97deb9b1c8e3300a9a24d8_1643265727.jpg?x-oss-process=image/resize,w_1600/quality,q_80" alt="">
+                            <img class="m-auto" style="max-height: 400px;" src="{{ product_detail.product_cover.url }}" alt="product_cover">
                         </div>
                         <div class="col-12 col-sm-8 product-main-details mt-md--50">
                             <div class="product-summary pl-lg--30 pl-md--0 text-right p-4">
                                 <h3 class="product-title mb--20">{{ product_detail.product_title }}</h3>
-                                <p class="product-short-description mb--20">
-                                    {{ product_detail.product_description }}
-                                </p>
+{#                                <p class="product-short-description mb--20">#}
+{#                                    {{ product_detail.product_description }}#}
+{#                                </p>#}
                                 <div class="my-5 py-5 product-price-wrapper mb--25">
                                     <span class="money text-success">{{ product_detail.product_price }} تومان</span>
                                     <span class="price-separator">-</span>
@@ -45,6 +45,7 @@
                                     </button>
                                 </div>
                                 <div class="product-footer-meta mt-5 pt-5">
+                                     <h1>This section has not been added to database yet</h1>
                                     <p><span class="m-0">دسته بندی ها:</span>
                                         <a href="shop.html">لباس</a>,
                                         <a href="shop.html">تابستانی</a>,
@@ -113,6 +114,10 @@
                                                                     <div>
                                                                         <div class="review__meta">
                                                                             <strong class="review__author px-4">{{ comment.user.username }}</strong>
+                                                                            <span>
+                                                                                <a href="{% url 'edit_user_comments' product_detail.id comment.id %}">Edit</a>
+                                                                                 <a href="#">Delete</a>
+                                                                            </span>
                                                                             <span class="review__dash">-</span>
                                                                             <span class="review__published-date">{{ comment.datetime_created }}</span>
                                                                         </div>
