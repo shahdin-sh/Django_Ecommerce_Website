@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/delete_card.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 offset-sm-3 offset-md-4">
+                <div class="info-card info-card--danger bg-white text-center mb-4 rounded-lg">
+                    <div class="info-card_icon mx-auto mb-4 d-flex justify-content-center align-items-center position-relative">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    <h2 class="mb-4">Delete action</h2>
+                    <div class="mb-4">
+                        <h4>ایا از حذف این نظر اطمینان دارید؟</h4>
+                        <div class="buttons_positions">
+                             <div class="button_delete">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <button class="btn btn-danger" type="submit" onclick="this.disabled=true;this.form.submit();"
+                                    >حذف نظر</button>
+                                </form>
+                            </div>
+                            <div class="button_cancel">
+                                 <a href="{% url 'product_detail_view' product_detail.id %}"><button class="btn btn-secondary">لغو</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

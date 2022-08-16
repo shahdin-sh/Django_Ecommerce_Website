@@ -7,4 +7,10 @@ class UserCommentsForm(forms.ModelForm):
         model = UserComments
         fields = ['text', 'rate']
 
+    def __init__(self, *args, **kwargs):
+        super(UserCommentsForm, self).__init__(*args, **kwargs)
+        self.fields['rate'].required = False
+
+
+
 
