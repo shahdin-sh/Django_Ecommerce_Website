@@ -114,10 +114,12 @@
                                                                     <div>
                                                                         <div class="review__meta">
                                                                             <strong class="review__author px-4">{{ comment.user.username }}</strong>
-                                                                            <span>
-                                                                                <a href="{% url 'edit_user_comments' product_detail.id comment.id %}">Edit</a>
-                                                                                 <a href="{% url 'delete_user_comments' product_detail.id comment.id %}">Delete</a>
-                                                                            </span>
+                                                                            {% if comment in user.comments.all %}
+                                                                                <span>
+                                                                                    <a href="{% url 'edit_user_comments' product_detail.id comment.id %}">ویرایش</a>
+                                                                                     <a href="{% url 'delete_user_comments' product_detail.id comment.id %}">حذف نظر</a>
+                                                                                </span>
+                                                                            {% endif %}
                                                                             <span class="review__dash">-</span>
                                                                             <span class="review__published-date">{{ comment.datetime_created }}</span>
                                                                         </div>

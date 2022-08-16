@@ -57,7 +57,7 @@ def product_detail_view(request, pk):
     dic = {
         'product_detail': product_detail,
         'comment_form': comment_form,
-        'comments': comments
+        'comments': comments,
     }
     return render(request, 'product/product_detail_view.html', dic)
 
