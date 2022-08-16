@@ -21,7 +21,7 @@ def products_list_view(request):
 def product_detail_view(request, pk):
     products = Product.objects.all().filter(product_existence=True)
     product_detail = get_object_or_404(products, pk=pk)
-    comments = UserComments.objects.all().filter(is_active=True, parent__isnull=True).order_by('-datetime_created')
+    comments = UserComments.custom_comment_manager.all().order_by('-datetime_created')
     # comment section for user started
     if request.method == 'POST':
         comment_form = UserCommentsForm(request.POST)

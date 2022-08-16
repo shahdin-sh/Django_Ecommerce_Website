@@ -20,6 +20,11 @@ class Product(models.Model):
         return reverse('product_detail_view', args=[self.id])
 
 
+class CustomCommentManager(models.Manager):
+    def get_queryset(self):
+        return super(CustomCommentManager, self).get_queryset().filter(is_active=True, parent__isnull=True)
+
+
 class UserComments(models.Model):
     PRODUCT_STARS = [
         ('1', 'Very bad'),
@@ -36,6 +41,10 @@ class UserComments(models.Model):
     is_active = models.BooleanField(default=True)
     parent = models.ForeignKey("self", blank=True, null=True, on_delete=models.CASCADE, related_name='replies')
     rate = models.CharField(max_length=10, choices=PRODUCT_STARS)
+
+    # Comment Manager
+    objects = models.Manager()  # django default manager
+    custom_comment_manager = CustomCommentManager()  # our custom manager
 
     def __str__(self):
         return self.text
