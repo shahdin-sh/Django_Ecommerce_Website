@@ -40,7 +40,7 @@ class UserComments(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     parent = models.ForeignKey("self", blank=True, null=True, on_delete=models.CASCADE, related_name='replies')
-    rate = models.CharField(max_length=10, choices=PRODUCT_STARS)
+    rate = models.CharField(max_length=10, choices=PRODUCT_STARS, blank=True)
 
     # Comment Manager
     objects = models.Manager()  # django default manager
