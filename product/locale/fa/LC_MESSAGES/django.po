@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-18 12:32+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\templates\product\product_detail_view.html:11
+msgid "Product Detail"
+msgstr "توضیحات محصول"
+
+#: .\templates\product\product_detail_view.html:34
+#: .\templates\product\product_detail_view.html:36
+msgid "$"
+msgstr "تومان"
+
+#: .\templates\product\product_detail_view.html:45
+msgid "Add To Cart"
+msgstr "اضافه کردن به سبد خرید"
+
+#: .\templates\product\product_detail_view.html:50
+msgid "Categorize"
+msgstr "دسته بندی ها"
+
+#: .\templates\product\product_detail_view.html:65
+msgid "Product Description"
+msgstr "توضیحات محصول"
+
+#: .\templates\product\product_detail_view.html:107
+msgid "number of comments for"
+msgstr "تعداد نظرات برای"
+
+#: .\templates\product\product_detail_view.html:165
+msgid "Add Replay"
+msgstr "اضافه کردن بازخورد"
+
+#: .\templates\product\product_detail_view.html:171
+#: .\templates\product\product_detail_view.html:202
+msgid "Submit"
+msgstr "ثبت"
+
+#: .\templates\product\product_detail_view.html:174
+msgid "Replies"
+msgstr "بازخورد ها"
+
+#: .\templates\product\product_detail_view.html:196
+msgid "Add a Comment"
+msgstr "اضافه کردن نظر"
