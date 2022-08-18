@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-18 12:32+0430\n"
+"POT-Creation-Date: 2022-08-18 14:49+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\models.py:31
+msgid "perfect"
+msgstr "عالی"
+
+#: .\models.py:32
+msgid "good"
+msgstr "خوب"
+
+#: .\models.py:33
+msgid "normal"
+msgstr "متوسط"
+
+#: .\models.py:34
+msgid "bad"
+msgstr "ضعیف"
+
+#: .\models.py:35
+msgid "Very bad"
+msgstr "بسیار ضعیف"
+
+#: .\models.py:37
+msgid "comment_text"
+msgstr "متن نظر"
+
+#: .\models.py:40
+msgid "comment_datetime_created"
+msgstr "تاریخ ثبت نظر"
+
+#: .\models.py:41
+msgid "comment_datetime_modified"
+msgstr "تاریخ ویرایش نظر"
+
+#: .\models.py:44
+msgid "product rate"
+msgstr "امتیازدهی به محصول"
+
 #: .\templates\product\product_detail_view.html:11
 msgid "Product Detail"
-msgstr "توضیحات محصول"
+msgstr "جزيِیات محصول"
 
 #: .\templates\product\product_detail_view.html:34
 #: .\templates\product\product_detail_view.html:36
@@ -28,11 +64,11 @@ msgstr "تومان"
 
 #: .\templates\product\product_detail_view.html:45
 msgid "Add To Cart"
-msgstr "اضافه کردن به سبد خرید"
+msgstr "افزودن به سبد خرید"
 
 #: .\templates\product\product_detail_view.html:50
 msgid "Categorize"
-msgstr "دسته بندی ها"
+msgstr "دسته بندی ها:"
 
 #: .\templates\product\product_detail_view.html:65
 msgid "Product Description"
@@ -40,11 +76,11 @@ msgstr "توضیحات محصول"
 
 #: .\templates\product\product_detail_view.html:107
 msgid "number of comments for"
-msgstr "تعداد نظرات برای"
+msgstr "تعداد دیدگاه برای"
 
 #: .\templates\product\product_detail_view.html:165
 msgid "Add Replay"
-msgstr "اضافه کردن بازخورد"
+msgstr "افزودن بازخورد"
 
 #: .\templates\product\product_detail_view.html:171
 #: .\templates\product\product_detail_view.html:202
@@ -57,4 +93,4 @@ msgstr "بازخورد ها"
 
 #: .\templates\product\product_detail_view.html:196
 msgid "Add a Comment"
-msgstr "اضافه کردن نظر"
+msgstr "افزودن نظر"
