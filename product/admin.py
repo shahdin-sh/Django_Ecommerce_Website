@@ -10,6 +10,8 @@ class ProductCommentsInline(admin.StackedInline):
     def get_queryset(self, request):
         return self.model.custom_comment_manager
 
+    extra = 0
+
 
 class CommentsReplayInline(admin.StackedInline):
     model = UserComments
@@ -17,6 +19,8 @@ class CommentsReplayInline(admin.StackedInline):
     # showing replay for each comment
     def get_queryset(self, request):
         return self.model.objects.filter(parent__isnull=False, is_active=True)
+
+    extra = 0
 
 
 class ProductAdmin(admin.ModelAdmin):
