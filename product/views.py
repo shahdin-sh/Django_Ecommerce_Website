@@ -3,6 +3,8 @@ from .models import Product, UserComments
 from django.core.paginator import Paginator
 from .forms import UserCommentsForm
 from django.views import generic
+from django.contrib import messages
+from django.utils.translation import gettext as _
 
 
 def products_list_view(request):
@@ -49,7 +51,9 @@ def product_detail_view(request, pk):
             new_comment.product = product_detail
             new_comment.user = request.user
             new_comment.save()
+            messages.success(request, _('your comment saved successfully'))
             return redirect('product_detail_view', pk=pk)
+
     else:
         comment_form = UserCommentsForm()
     # end of comment section
@@ -71,6 +75,7 @@ def edit_use_comments(request, pk, comment_id):
     if request.method == 'POST':
         if edit_form.is_valid():
             edit_form.save()
+            messages.success(request, _('your comment changed successfully'))
             return redirect('product_detail_view', pk=pk)
     # dic for context
     dic = {
@@ -88,7 +93,9 @@ def delete_user_comments(request, pk, comment_id):
     getting_particular_user_comment = get_object_or_404(user_comments, pk=comment_id)
     if request.method == 'POST':
         getting_particular_user_comment.delete()
-        redirect('product_detail_view', pk)
+        messages.success(request, _('your comment deleted successfully'))
+        return redirect('product_detail_view', pk)
+
     # dic for context
     dic = {
         'product_detail': product_detail

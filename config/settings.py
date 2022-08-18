@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import environ
 import dj_database_url
+from django.contrib.messages import constants
 
 # for Environment Variables
 env = environ.Env()
@@ -52,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'product.apps.ProductConfig'
+    'product',
+    'rosetta',
 ]
 
 SITE_ID = 1
@@ -130,6 +132,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LANGUAGE_CODE = 'fa'
 
+LANGUAGES = (
+    ('en', 'English'),
+    ('fa', 'Persian'),
+)
+
 TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
@@ -175,3 +182,9 @@ CKEDITOR_CONFIGS = {
 
 # crispy forms setting
 CRISPY_TEMPLATE_PACk = 'bootstrap4'
+
+
+# messages Framework
+MESSAGE_TAGS = {
+    constants.ERROR: 'danger',
+}

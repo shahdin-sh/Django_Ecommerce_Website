@@ -26,4 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('products/', include('product.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
+    # rosetta
+    path('rosetta/', include('rosetta.urls'))
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
