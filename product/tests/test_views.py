@@ -25,8 +25,18 @@ class TestView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'product/products_list_view.html')
 
+    def test_products_list_view_objects_are_exists(self):
+        client = Client()
+        response = client.get(self.products_list_view)
+        self.assertContains(response, self.product_1.product_title)
+
     def test_product_detail_view_GET(self):
         client = Client()
         response = client.get(self.products_detail_view)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'product/product_detail_view.html')
+
+    def test_product_detail_view_object_is_exist(self):
+        client = Client()
+        response = client.get(self.products_detail_view)
+        self.assertContains(response, self.product_1.id)

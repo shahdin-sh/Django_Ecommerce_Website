@@ -6,6 +6,7 @@ from ..views import *
 
 
 class TestProductUrls(SimpleTestCase):
+    # test urls by their names
     def test_product_list_view_is_resolved(self):
         url = reverse('products_list_view')
         self.assertEqual(resolve(url).func, products_list_view)
@@ -21,3 +22,4 @@ class TestProductUrls(SimpleTestCase):
     def test_product_delete_comment_view_is_resolved(self):
         url = reverse('delete_user_comments', args=['1', '1'])
         self.assertEqual(resolve(url).func, delete_user_comments)
+
