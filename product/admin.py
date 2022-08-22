@@ -54,8 +54,10 @@ class ProductCommentsAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['user', 'name', 'email']
 
+
 # registering our models ------> first register model then register admin
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(UserComments, ProductCommentsAdmin)
 admin.site.register(Customer, CustomerAdmin)
+

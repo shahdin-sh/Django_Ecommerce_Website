@@ -1,11 +1,18 @@
 from django.db import models
 from django.shortcuts import reverse
-from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 
 class Product(models.Model):
+    All_Available_Product_Classification = [
+        ('Un', 'Uncategorized'),
+        ('CAF', 'Clothing and fashion'),
+        ('SS', 'Supermarket Items'),
+        ('HA', 'Home Appliances'),
+        ('T', 'Toys'),
+        ('B', 'Books'),
+    ]
     product_title = models.CharField(max_length=100, verbose_name=_('title'))
     product_description = models.TextField(verbose_name=_('description'))
     product_datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('datetime_created'))
@@ -14,6 +21,7 @@ class Product(models.Model):
     product_existence = models.BooleanField(default=True, verbose_name=_('existence'))
     product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
     number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
+    all_product_classification = models.CharField(choices=All_Available_Product_Classification, max_length=200, default=All_Available_Product_Classification[5])
 
     def __str__(self):
         return self.product_title
