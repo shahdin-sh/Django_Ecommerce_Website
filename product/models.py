@@ -6,13 +6,14 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Product(models.Model):
-    product_title = models.CharField(max_length=100, verbose_name='title')
-    product_description = models.TextField(verbose_name='description')
-    product_datetime_created = models.DateTimeField(auto_now_add=True, verbose_name='datetime_created')
-    product_datetime_modified = models.DateTimeField(auto_now=True, verbose_name='datetime_modified')
-    product_price = models.PositiveIntegerField(default=0, verbose_name='price')
-    product_existence = models.BooleanField(default=True, verbose_name='existence')
-    product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name='cover')
+    product_title = models.CharField(max_length=100, verbose_name=_('title'))
+    product_description = models.TextField(verbose_name=_('description'))
+    product_datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('datetime_created'))
+    product_datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
+    product_price = models.PositiveIntegerField(default=0, verbose_name=_('price'))
+    product_existence = models.BooleanField(default=True, verbose_name=_('existence'))
+    product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
+    number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
 
     def __str__(self):
         return self.product_title
@@ -53,3 +54,8 @@ class UserComments(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail_view', args=[self.product.id])
 
+
+class Customer(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(max_length=200, blank=True, null=True)

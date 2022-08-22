@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-18 16:19+0430\n"
-"PO-Revision-Date: 2022-08-18 16:27+0430\n"
+"POT-Creation-Date: 2022-08-22 13:47+0430\n"
+"PO-Revision-Date: 2022-08-22 13:51+0430\n"
 "Last-Translator:   <shahdin.shahdaei@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,39 +18,77 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\models.py:31
+#: .\models.py:9
+msgid "title"
+msgstr "عنوان محصول"
+
+#: .\models.py:10
+#, fuzzy
+#| msgid "Product Description"
+msgid "description"
+msgstr "توضیحات محصول"
+
+#: .\models.py:11
+#, fuzzy
+#| msgid "comment_datetime_created"
+msgid "datetime_created"
+msgstr "تاریخ ثبت نظر"
+
+#: .\models.py:12
+#, fuzzy
+#| msgid "comment_datetime_modified"
+msgid "datetime_modified"
+msgstr "تاریخ ویرایش نظر"
+
+#: .\models.py:13
+msgid "price"
+msgstr "قیمت محصول"
+
+#: .\models.py:14
+msgid "existence"
+msgstr "موجودیت محصول"
+
+#: .\models.py:15
+msgid "cover"
+msgstr "جلد محصول"
+
+#: .\models.py:16
+msgid "numbers"
+msgstr "تعداد محصول"
+
+#: .\models.py:32
 msgid "perfect"
 msgstr "عالی"
 
-#: .\models.py:32
+#: .\models.py:33
 msgid "good"
 msgstr "خوب"
 
-#: .\models.py:33
+#: .\models.py:34
 msgid "normal"
 msgstr "متوسط"
 
-#: .\models.py:34
+#: .\models.py:35
 msgid "bad"
 msgstr "ضعیف"
 
-#: .\models.py:35
+#: .\models.py:36
 msgid "Very bad"
 msgstr "بسیار ضعیف"
 
-#: .\models.py:37
+#: .\models.py:38
 msgid "comment_text"
 msgstr "متن نظر"
 
-#: .\models.py:40
+#: .\models.py:41
 msgid "comment_datetime_created"
 msgstr "تاریخ ثبت نظر"
 
-#: .\models.py:41
+#: .\models.py:42
 msgid "comment_datetime_modified"
 msgstr "تاریخ ویرایش نظر"
 
-#: .\models.py:44
+#: .\models.py:45
 msgid "product rate"
 msgstr "امتیازدهی به محصول"
 
@@ -104,10 +142,9 @@ msgstr "دیدگاه شما با موفقیت ذخیره شد."
 msgid "your comment changed successfully"
 msgstr "دیدگاه شما با موفقیت تغییر کرد."
 
-#: .\views.py:89
-msgid "are you sure you want to delete this comment?"
-msgstr "ایا از حذف این دیدگاه اطمینان دارید؟"
-
-#: .\views.py:97
+#: .\views.py:96
 msgid "your comment deleted successfully"
 msgstr "دیدگاه شما با موفقیت حذف شد."
+
+#~ msgid "are you sure you want to delete this comment?"
+#~ msgstr "ایا از حذف این دیدگاه اطمینان دارید؟"
