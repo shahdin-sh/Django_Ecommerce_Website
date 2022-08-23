@@ -34,7 +34,7 @@ class Product(models.Model):
     product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
     number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
     product_classification = models.CharField(choices=all_available_product_classification, max_length=200, default=all_available_product_classification[5])
-    product_likes = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='likes_on_products', blank=True, null=True)
+    product_likes = models.ManyToManyField(get_user_model(), related_name='likes_on_products', blank=True, null=True)
 
     def __str__(self):
         return self.product_title

@@ -5,6 +5,7 @@ from .forms import UserCommentsForm
 from django.views import generic
 from django.contrib import messages
 from django.utils.translation import gettext as _
+from django.http import Http404
 
 
 def products_list_view(request):
@@ -100,7 +101,26 @@ def delete_user_comments(request, pk, comment_id):
     dic = {
         'product_detail': product_detail
     }
-    return render(request, 'product/delete_product_comments.html', dic)\
+    return render(request, 'product/delete_product_comments.html', dic)
 
 
+def user_likes_on_products(request, pk):
+    product = get_object_or_404(Product.product_manager, pk=pk)
+    current_user = request.user
+    if current_user.is_authenticated:
+        if current_user not in product.product_likes.all():
+            product.product_likes.add(current_user)
+            return redirect('products_list_view')
+    else:
+        raise Http404()
 
+
+def delete_user_likes_on_products(request, pk):
+    product = get_object_or_404(Product.product_manager, pk=pk)
+    current_user = request.user
+    if current_user.is_authenticated:
+        if current_user in product.product_likes.all():
+            product.product_likes.remove(current_user)
+            return redirect('products_list_view')
+    else:
+        raise Http404()
