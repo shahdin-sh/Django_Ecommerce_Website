@@ -4,6 +4,18 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 
+# Managers
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(product_existence=True, number_of_products__gt=0)
+
+
+class CustomCommentManager(models.Manager):
+    def get_queryset(self):
+        return super(CustomCommentManager, self).get_queryset().filter(is_active=True, parent__isnull=True)
+
+
+# Models
 class Product(models.Model):
     all_available_product_classification = [
         ('Uncategorized', 'UN'),
@@ -22,6 +34,7 @@ class Product(models.Model):
     product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
     number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
     product_classification = models.CharField(choices=all_available_product_classification, max_length=200, default=all_available_product_classification[5])
+    product_likes = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='likes_on_products', blank=True, null=True)
 
     def __str__(self):
         return self.product_title
@@ -29,10 +42,9 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail_view', args=[self.id])
 
-
-class CustomCommentManager(models.Manager):
-    def get_queryset(self):
-        return super(CustomCommentManager, self).get_queryset().filter(is_active=True, parent__isnull=True)
+    # Product Manager
+    objects = models.Manager()  # django default manager
+    product_manager = ProductManager()
 
 
 class UserComments(models.Model):

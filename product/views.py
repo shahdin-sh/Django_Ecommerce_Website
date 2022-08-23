@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 
 
 def products_list_view(request):
-    products = Product.objects.all().filter(product_existence=True).order_by('-product_datetime_created')
+    products = Product.product_manager.all().order_by('-product_datetime_created')
     paginator = Paginator(products, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -21,7 +21,7 @@ def products_list_view(request):
 
 
 def product_detail_view(request, pk):
-    products = Product.objects.all().filter(product_existence=True)
+    products = Product.product_manager.all()
     product_detail = get_object_or_404(products, pk=pk)
     comments = UserComments.custom_comment_manager.all().order_by('-datetime_created')
     # comment section for user started
@@ -100,4 +100,7 @@ def delete_user_comments(request, pk, comment_id):
     dic = {
         'product_detail': product_detail
     }
-    return render(request, 'product/delete_product_comments.html', dic)
+    return render(request, 'product/delete_product_comments.html', dic)\
+
+
+
