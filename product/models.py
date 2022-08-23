@@ -5,13 +5,13 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Product(models.Model):
-    All_Available_Product_Classification = [
-        ('Un', 'Uncategorized'),
-        ('CAF', 'Clothing and fashion'),
-        ('SS', 'Supermarket Items'),
-        ('HA', 'Home Appliances'),
-        ('T', 'Toys'),
-        ('B', 'Books'),
+    all_available_product_classification = [
+        ('Uncategorized', 'UN'),
+        ('Clothing and fashion', 'CAF'),
+        ('Supermarket Items', 'SI'),
+        ('Home Appliances', 'HA'),
+        ('Toys', 'TY'),
+        ('Books', 'BO'),
     ]
     product_title = models.CharField(max_length=100, verbose_name=_('title'))
     product_description = models.TextField(verbose_name=_('description'))
@@ -21,7 +21,7 @@ class Product(models.Model):
     product_existence = models.BooleanField(default=True, verbose_name=_('existence'))
     product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
     number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
-    all_product_classification = models.CharField(choices=All_Available_Product_Classification, max_length=200, default=All_Available_Product_Classification[5])
+    product_classification = models.CharField(choices=all_available_product_classification, max_length=200, default=all_available_product_classification[5])
 
     def __str__(self):
         return self.product_title

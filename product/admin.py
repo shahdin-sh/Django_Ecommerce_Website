@@ -24,7 +24,7 @@ class CommentsReplayInline(admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['product_title', 'product_datetime_created', 'product_price', 'product_existence', 'product_cover', 'comments']
+    list_display = ['product_title', 'product_classification', 'product_datetime_created', 'product_price', 'product_existence', 'product_cover', 'comments']
 
     def comments(self, obj):
         if obj.comments.exists():
