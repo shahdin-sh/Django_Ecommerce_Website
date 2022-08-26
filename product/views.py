@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 from .models import Product, UserComments
 from django.core.paginator import Paginator
 from .forms import UserCommentsForm
-from django.views import generic
 from django.contrib import messages
 from django.utils.translation import gettext as _
+from django.http import Http404
 
 
 def products_list_view(request):
-    products = Product.objects.all().filter(product_existence=True).order_by('-product_datetime_created')
+    products = Product.product_manager.all().order_by('-product_datetime_created')
     paginator = Paginator(products, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -21,7 +21,7 @@ def products_list_view(request):
 
 
 def product_detail_view(request, pk):
-    products = Product.objects.all().filter(product_existence=True)
+    products = Product.product_manager.all()
     product_detail = get_object_or_404(products, pk=pk)
     comments = UserComments.custom_comment_manager.all().order_by('-datetime_created')
     # comment section for user started
@@ -101,3 +101,37 @@ def delete_user_comments(request, pk, comment_id):
         'product_detail': product_detail
     }
     return render(request, 'product/delete_product_comments.html', dic)
+
+
+def user_likes_on_products(request, pk):
+    product = get_object_or_404(Product.product_manager, pk=pk)
+    current_user = request.user
+    if current_user.is_authenticated:
+        if current_user not in product.product_likes.all():
+            product.product_likes.add(current_user)
+            messages.success(request, _('this product added to your interest list successfully'))
+            return redirect('liked_products_view')
+    else:
+        raise Http404()
+
+
+def delete_user_likes_on_products(request, pk):
+    product = get_object_or_404(Product.product_manager, pk=pk)
+    current_user = request.user
+    if current_user.is_authenticated:
+        if current_user in product.product_likes.all():
+            product.product_likes.remove(current_user)
+            messages.success(request, _('this product delete from your interest list successfully'))
+            return redirect('liked_products_view')
+    else:
+        raise Http404()
+
+
+def liked_products_view(request):
+    current_user = request.user
+    user_liked_products = current_user.likes_on_products.all()
+    # a dic for context
+    dic = {
+        'liked_products': user_liked_products,
+    }
+    return render(request, 'product/liked_products.html', dic)

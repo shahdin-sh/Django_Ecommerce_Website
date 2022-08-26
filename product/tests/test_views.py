@@ -55,16 +55,3 @@ class TestView(TestCase):
         client = Client()
         response = client.get(self.products_detail_view)
         self.assertContains(response, self.product_1.id)
-
-    # def test_post_detail_view_Post_add_user_comment(self):
-    #     response = self.client.post(self.products_detail_view, {
-    #         'user': self.user_comment_1.user,
-    #         'product': self.user_comment_1.product
-    #     })
-    #     self.assertEqual(response.status_code, 302)
-    #     self.assertEqual(self.user_comment_1.text, 'test1')
-
-    # def test_product_detail_view_Post_no_data_for_comments(self):
-    #     response = self.client.post(self.products_detail_view)
-    #     self.assertEqual(response.status_code, 302)
-    #     self.assertEqual(self.user_comment_1.count(), 0)

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'product',
     'rosetta',
+    'cart'
 ]
 
 SITE_ID = 1

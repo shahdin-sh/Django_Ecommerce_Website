@@ -4,14 +4,26 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 
+# Managers
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(product_existence=True, number_of_products__gt=0)
+
+
+class CustomCommentManager(models.Manager):
+    def get_queryset(self):
+        return super(CustomCommentManager, self).get_queryset().filter(is_active=True, parent__isnull=True)
+
+
+# Models
 class Product(models.Model):
-    All_Available_Product_Classification = [
-        ('Un', 'Uncategorized'),
-        ('CAF', 'Clothing and fashion'),
-        ('SS', 'Supermarket Items'),
-        ('HA', 'Home Appliances'),
-        ('T', 'Toys'),
-        ('B', 'Books'),
+    all_available_product_classification = [
+        ('Uncategorized', 'UN'),
+        ('Clothing and fashion', 'CAF'),
+        ('Supermarket Items', 'SI'),
+        ('Home Appliances', 'HA'),
+        ('Toys', 'TY'),
+        ('Books', 'BO'),
     ]
     product_title = models.CharField(max_length=100, verbose_name=_('title'))
     product_description = models.TextField(verbose_name=_('description'))
@@ -21,18 +33,21 @@ class Product(models.Model):
     product_existence = models.BooleanField(default=True, verbose_name=_('existence'))
     product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
     number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
-    all_product_classification = models.CharField(choices=All_Available_Product_Classification, max_length=200, default=All_Available_Product_Classification[5])
+    product_classification = models.CharField(choices=all_available_product_classification, max_length=200, default=all_available_product_classification[5], verbose_name=_('classification'))
+    product_likes = models.ManyToManyField(get_user_model(), related_name='likes_on_products', blank=True, null=True, verbose_name=_('likes_on_product'))
 
     def __str__(self):
         return self.product_title
 
+    def likes_on_product(self):
+        return self.product_likes.count()
+
     def get_absolute_url(self):
         return reverse('product_detail_view', args=[self.id])
 
-
-class CustomCommentManager(models.Manager):
-    def get_queryset(self):
-        return super(CustomCommentManager, self).get_queryset().filter(is_active=True, parent__isnull=True)
+    # Product Manager
+    objects = models.Manager()  # django default manager
+    product_manager = ProductManager()
 
 
 class UserComments(models.Model):
