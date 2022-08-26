@@ -23,3 +23,10 @@ class TestProductUrls(SimpleTestCase):
         url = reverse('delete_user_comments', args=['1', '1'])
         self.assertEqual(resolve(url).func, delete_user_comments)
 
+    def test_likes_on_products_view_is_resolved(self):
+        url = reverse('user_likes_on_product', args=['1'])
+        self.assertEqual(resolve(url).func, user_likes_on_products)
+
+    def test_delete_likes_on_products_view_is_resolved(self):
+        url = reverse('delete_user_likes_on_product', args=['1'])
+        self.assertEqual(resolve(url).func, delete_user_likes_on_products)
