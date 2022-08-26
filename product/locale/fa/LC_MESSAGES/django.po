@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-22 13:47+0430\n"
-"PO-Revision-Date: 2022-08-22 13:51+0430\n"
+"POT-Creation-Date: 2022-08-26 13:52+0430\n"
+"PO-Revision-Date: 2022-08-26 13:37+0430\n"
 "Last-Translator:   <shahdin.shahdaei@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,77 +18,91 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\models.py:9
+#: .\admin.py:28
+#, fuzzy
+#| msgid "comment_text"
+msgid "comments"
+msgstr "متن نظر"
+
+#: .\models.py:28
 msgid "title"
 msgstr "عنوان محصول"
 
-#: .\models.py:10
+#: .\models.py:29
 #, fuzzy
 #| msgid "Product Description"
 msgid "description"
 msgstr "توضیحات محصول"
 
-#: .\models.py:11
+#: .\models.py:30
 #, fuzzy
 #| msgid "comment_datetime_created"
 msgid "datetime_created"
 msgstr "تاریخ ثبت نظر"
 
-#: .\models.py:12
+#: .\models.py:31
 #, fuzzy
 #| msgid "comment_datetime_modified"
 msgid "datetime_modified"
 msgstr "تاریخ ویرایش نظر"
 
-#: .\models.py:13
+#: .\models.py:32
 msgid "price"
 msgstr "قیمت محصول"
 
-#: .\models.py:14
+#: .\models.py:33
 msgid "existence"
 msgstr "موجودیت محصول"
 
-#: .\models.py:15
+#: .\models.py:34
 msgid "cover"
 msgstr "جلد محصول"
 
-#: .\models.py:16
+#: .\models.py:35
 msgid "numbers"
 msgstr "تعداد محصول"
 
-#: .\models.py:32
+#: .\models.py:36
+msgid "classification"
+msgstr "دسته بندی ها"
+
+#: .\models.py:37
+msgid "likes_on_product"
+msgstr "امیتاز کاربران به این محصول"
+
+#: .\models.py:52
 msgid "perfect"
 msgstr "عالی"
 
-#: .\models.py:33
+#: .\models.py:53
 msgid "good"
 msgstr "خوب"
 
-#: .\models.py:34
+#: .\models.py:54
 msgid "normal"
 msgstr "متوسط"
 
-#: .\models.py:35
+#: .\models.py:55
 msgid "bad"
 msgstr "ضعیف"
 
-#: .\models.py:36
+#: .\models.py:56
 msgid "Very bad"
 msgstr "بسیار ضعیف"
 
-#: .\models.py:38
+#: .\models.py:58
 msgid "comment_text"
 msgstr "متن نظر"
 
-#: .\models.py:41
+#: .\models.py:61
 msgid "comment_datetime_created"
 msgstr "تاریخ ثبت نظر"
 
-#: .\models.py:42
+#: .\models.py:62
 msgid "comment_datetime_modified"
 msgstr "تاریخ ویرایش نظر"
 
-#: .\models.py:45
+#: .\models.py:65
 msgid "product rate"
 msgstr "امتیازدهی به محصول"
 
@@ -134,15 +148,15 @@ msgstr "بازخورد ها"
 msgid "Add a Comment"
 msgstr "افزودن نظر"
 
-#: .\views.py:54
+#: .\views.py:55
 msgid "your comment saved successfully"
 msgstr "دیدگاه شما با موفقیت ذخیره شد."
 
-#: .\views.py:78
+#: .\views.py:79
 msgid "your comment changed successfully"
 msgstr "دیدگاه شما با موفقیت تغییر کرد."
 
-#: .\views.py:96
+#: .\views.py:97
 msgid "your comment deleted successfully"
 msgstr "دیدگاه شما با موفقیت حذف شد."
 

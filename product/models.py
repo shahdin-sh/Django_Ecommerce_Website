@@ -33,11 +33,14 @@ class Product(models.Model):
     product_existence = models.BooleanField(default=True, verbose_name=_('existence'))
     product_cover = models.ImageField(upload_to='product/', default='default_product/shop_cart.jpg', verbose_name=_('cover'))
     number_of_products = models.IntegerField(default=10, verbose_name=_('numbers'))
-    product_classification = models.CharField(choices=all_available_product_classification, max_length=200, default=all_available_product_classification[5])
-    product_likes = models.ManyToManyField(get_user_model(), related_name='likes_on_products', blank=True, null=True)
+    product_classification = models.CharField(choices=all_available_product_classification, max_length=200, default=all_available_product_classification[5], verbose_name=_('classification'))
+    product_likes = models.ManyToManyField(get_user_model(), related_name='likes_on_products', blank=True, null=True, verbose_name=_('likes_on_product'))
 
     def __str__(self):
         return self.product_title
+
+    def likes_on_product(self):
+        return self.product_likes.count()
 
     def get_absolute_url(self):
         return reverse('product_detail_view', args=[self.id])

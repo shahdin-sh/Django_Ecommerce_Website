@@ -24,12 +24,15 @@ class CommentsReplayInline(admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['product_title', 'product_classification', 'product_datetime_created', 'product_price', 'product_existence', 'product_cover', 'comments']
+    list_display = ['product_title', 'product_classification', 'product_datetime_created', 'product_price', 'product_existence', 'product_cover', 'comments', 'likes']
 
     def comments(self, obj):
         if obj.comments.exists():
             return len(obj.comments.all().filter(is_active=True, parent__isnull=True))
         return '0'
+
+    def likes(self, obj):
+        return obj.product_likes.count()
 
     inlines = [
         ProductCommentsInline,
