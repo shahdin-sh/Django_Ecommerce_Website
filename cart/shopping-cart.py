@@ -36,7 +36,6 @@ class ShoppingCart:
 
     def __iter__(self):
         product_ids = self.shopping_cart.keys()
-
         products = Product.objects.filter(id__in=product_ids)
 
         shopping_cart = self.shopping_cart.copy()
@@ -46,3 +45,17 @@ class ShoppingCart:
             shopping_cart[str(product.id)]['product_obj'] = product
         for item in shopping_cart.values():
             yield item
+
+    def __len__(self):
+        # return all amount of products that would save in shopping cart
+        return len(self.shopping_cart.keys())
+
+    def clear(self):
+        del self.session['cart']
+        self.save()
+
+    def get_total_price(self):
+        product_ids = self.shopping_cart.keys()
+        products = Product.objects.filter(id__in=product_ids)
+
+        return sum(products.prodcut_price for product in products)

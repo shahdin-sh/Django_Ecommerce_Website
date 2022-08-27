@@ -135,3 +135,4 @@ def liked_products_view(request):
         'liked_products': user_liked_products,
     }
     return render(request, 'product/liked_products.html', dic)
+

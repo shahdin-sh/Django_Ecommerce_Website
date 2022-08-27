@@ -25,6 +25,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('products/', include('product.urls')),
+    path('shopping-cart/', include('cart.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
     # rosetta
