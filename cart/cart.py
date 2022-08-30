@@ -6,22 +6,23 @@ class ShoppingCart:
         # Initializing Cart Functionality
         self.request = request
         self.session = request.session
-        shopping_cart = self.session.get('cart')
+        shopping_cart = self.session.get('shopping_cart')
 
         if not shopping_cart:
             # getting cart info from this dic below
-            self.session['cart'] = {}
+            self.session['shopping_cart'] = {}
 
-        self.shopping_cart = shopping_cart
+        self.shopping_cart = self.session['shopping_cart']
 
     def add_to_cart(self, product, quantity=1):
         # add specific product to the shopping cart
         product_id = str(product.id)
         if product_id not in self.shopping_cart:
             self.shopping_cart[product_id] = {'quantity': quantity}
+            self.save()
         else:
             self.shopping_cart[product_id]['quantity'] += quantity
-        self.save()
+            self.save()
 
     def delete_from_cart(self, product):
         # delete a product from cart
@@ -51,7 +52,7 @@ class ShoppingCart:
         return len(self.shopping_cart.keys())
 
     def clear(self):
-        del self.session['cart']
+        del self.session['shopping_cart']
         self.save()
 
     def get_total_price(self):

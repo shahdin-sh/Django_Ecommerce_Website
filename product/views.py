@@ -5,6 +5,7 @@ from .forms import UserCommentsForm
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.http import Http404
+from cart.forms import AddToCartProductForm
 
 
 def products_list_view(request):
@@ -62,6 +63,7 @@ def product_detail_view(request, pk):
         'product_detail': product_detail,
         'comment_form': comment_form,
         'comments': comments,
+        'add_to_cart_form': AddToCartProductForm(request.POST, product_stock=product_detail.number_of_products),
     }
     return render(request, 'product/product_detail_view.html', dic)
 
