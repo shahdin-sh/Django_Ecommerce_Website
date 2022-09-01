@@ -20,9 +20,7 @@ class ShoppingCart:
         if product_id not in self.shopping_cart:
             self.shopping_cart[product_id] = {'quantity': quantity}
             self.save()
-        else:
-            self.shopping_cart[product_id]['quantity'] += quantity
-            self.save()
+
 
     def delete_from_cart(self, product):
         # delete a product from cart

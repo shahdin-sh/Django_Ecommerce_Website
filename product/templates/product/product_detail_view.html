@@ -36,26 +36,28 @@
                                     <span class="money old-price text-danger">۲۱۰,۰۰۰ {% trans '$' %}</span>
                                 </div>
                                 <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
-{#                                    <div class="quantity-wrapper d-flex justify-content-start">#}
-{#                                        <div class="quantity">#}
-{#                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">#}
-{#                                        </div>#}
-{#                                    </div>#}
-                                    <form method="POST" action="{% url 'cart:add_to_cart' product_detail.id %}">
-                                        {% csrf_token %}
-                                        {{ add_to_cart_form|crispy }}
-                                        <button type="submit" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
-                                            {% translate 'Add To Cart' %}
-                                        </button>
-                                    </form>
+                                    {% if not is_in_the_cart %}
+                                        <form method="POST" action="{% url 'cart:add_to_cart' product_detail.id %}">
+                                            {% csrf_token %}
+                                            <div class="quantity">
+                                                <input type="number" class="quantity-input" name="quantity"
+                                                       id="qty" value="1" min="1" max="{{ product_detail.number_of_products }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
+                                                {% translate 'Add To Cart' %}
+                                            </button>
+                                        </form>
+                                    {% elif is_in_the_cart %}
+                                      <h4>این محصول به<a href="{% url 'cart:shopping_cart_view' %}"> سبد خرید شما
+                                      </a> اضافه شد است.</h4>
+                                    {% endif %}
                                 </div>
                                 <div class="product-footer-meta mt-5 pt-5">
-                                     <h1>This section has not been added to database yet</h1>
                                     <p><span class="m-0">{% translate 'Categorize' %}</span>
-                                        <a href="shop.html">لباس</a>,
-                                        <a href="shop.html">تابستانی</a>,
-                                        <a href="shop.html">گرم</a>,
-                                        <a href="shop.html">زنانه</a>
+                                        {{ product_detail.product_classification }}
+                                    </p>
+                                    <p><span class="m-0">تعداد موجود این محصول در انبار:</span>
+                                        {{ product_detail.number_of_products }}
                                     </p>
                                 </div>
                             </div>

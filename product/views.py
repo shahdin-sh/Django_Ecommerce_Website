@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.http import Http404
 from cart.forms import AddToCartProductForm
+from cart.cart import ShoppingCart
 
 
 def products_list_view(request):
@@ -58,12 +59,17 @@ def product_detail_view(request, pk):
     else:
         comment_form = UserCommentsForm()
     # end of comment section
+    # check if this product is in the shopping cart or not
+    shopping_cart = ShoppingCart(request)
+    cart_keys = shopping_cart.shopping_cart.keys()
+    is_in_the_cart = Product.objects.filter(id__in=cart_keys, pk=pk).exists()
     # a dic for context
     dic = {
         'product_detail': product_detail,
         'comment_form': comment_form,
         'comments': comments,
         'add_to_cart_form': AddToCartProductForm(request.POST, product_stock=product_detail.number_of_products),
+        'is_in_the_cart': is_in_the_cart,
     }
     return render(request, 'product/product_detail_view.html', dic)
 
