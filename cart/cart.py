@@ -56,6 +56,5 @@ class ShoppingCart:
 
     def get_total_price(self):
         product_ids = self.shopping_cart.keys()
-        products = Product.objects.filter(id__in=product_ids)
 
-        return sum(products.prodcut_price for product in products)
+        return sum(item['quantity'] * item['product_obj'].product_price for item in self.shopping_cart.values())

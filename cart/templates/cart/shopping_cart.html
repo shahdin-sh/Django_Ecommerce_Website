@@ -83,7 +83,7 @@
                                         <span>مجموع</span>
                                     </div>
                                     <div class="cart-calculator__item--value">
-                                        <span>۳۴۶,۰۰۰ تومان</span>
+                                        <span>{{ shopping_cart.get_total_price }}</span>
                                     </div>
                                 </div>
                                 <div class="cart-calculator__item order-total">
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="cart-calculator__item--value">
                                         <span class="product-price-wrapper">
-                                            <span class="money">۳۴۶,۰۰۰ تومان</span>
+                                            <span class="money">{{ shopping_cart.get_total_price }}</span>
                                         </span>
                                     </div>
                                 </div>
