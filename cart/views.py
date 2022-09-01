@@ -34,6 +34,6 @@ def remove_from_cart_view(request, product_id):
     shopping_cart = ShoppingCart(request)
     product = get_object_or_404(Product.product_manager, id=product_id)
     shopping_cart.delete_from_cart(product)
-    messages.success(request, 'this product deleted from your cart successfully')
-    return redirect('cart:shopping_cart_view')
+    messages.warning(request, 'this product deleted from your cart')
+    return redirect('product_detail_view', pk=product_id)
 

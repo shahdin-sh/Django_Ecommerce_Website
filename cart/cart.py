@@ -21,7 +21,6 @@ class ShoppingCart:
             self.shopping_cart[product_id] = {'quantity': quantity}
             self.save()
 
-
     def delete_from_cart(self, product):
         # delete a product from cart
         product_id = str(product.id)
@@ -43,7 +42,9 @@ class ShoppingCart:
             # added product_obj key                        this key_value came from DB
             shopping_cart[str(product.id)]['product_obj'] = product
         for item in shopping_cart.values():
+            item['total_price'] = item['product_obj'].product_price * item['quantity']
             yield item
+
 
     def __len__(self):
         # return all amount of products that would save in shopping cart
