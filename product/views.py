@@ -117,8 +117,7 @@ def user_likes_on_products(request, pk):
     if current_user.is_authenticated:
         if current_user not in product.product_likes.all():
             product.product_likes.add(current_user)
-            messages.success(request, _('this product added to your interest list successfully'))
-            return redirect('liked_products_view')
+            return redirect('products_list_view')
     else:
         raise Http404()
 
@@ -129,8 +128,7 @@ def delete_user_likes_on_products(request, pk):
     if current_user.is_authenticated:
         if current_user in product.product_likes.all():
             product.product_likes.remove(current_user)
-            messages.success(request, _('this product delete from your interest list successfully'))
-            return redirect('liked_products_view')
+            return redirect('products_list_view')
     else:
         raise Http404()
 
@@ -138,9 +136,8 @@ def delete_user_likes_on_products(request, pk):
 def liked_products_view(request):
     current_user = request.user
     user_liked_products = current_user.likes_on_products.all()
-    # a dic for context
     dic = {
-        'liked_products': user_liked_products,
+        'user_liked_products': user_liked_products
     }
     return render(request, 'product/liked_products.html', dic)
 

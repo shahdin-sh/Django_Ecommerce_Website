@@ -3,6 +3,7 @@ from product.models import Product
 from .cart import ShoppingCart
 from .forms import AddToCartProductForm
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 
 def shopping_cart_view(request):
@@ -14,6 +15,7 @@ def shopping_cart_view(request):
     return render(request, 'cart/shopping_cart.html', dic)
 
 
+@require_POST
 def add_to_cart_view(request, product_id):
     shopping_cart = ShoppingCart(request)
     product = get_object_or_404(Product.product_manager, id=product_id)

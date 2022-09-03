@@ -2,7 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.sessions.models import Session
 
 # Managers
 class ProductManager(models.Manager):
@@ -38,13 +38,10 @@ class Product(models.Model):
                                               max_length=200, default=all_available_product_classification[5],
                                               verbose_name=_('classification'))
     product_likes = models.ManyToManyField(get_user_model(), related_name='likes_on_products', blank=True, null=True,
-                                           verbose_name=_('likes_on_product'))
+                                            verbose_name=_('likes_on_product'))
 
     def __str__(self):
         return self.product_title
-
-    def likes_on_product(self):
-        return self.product_likes.count()
 
     def get_absolute_url(self):
         return reverse('product_detail_view', args=[self.id])
