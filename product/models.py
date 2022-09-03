@@ -18,12 +18,12 @@ class CustomCommentManager(models.Manager):
 # Models
 class Product(models.Model):
     all_available_product_classification = [
-        ('Uncategorized', 'UN'),
-        ('Clothing and fashion', 'CAF'),
-        ('Supermarket Items', 'SI'),
-        ('Home Appliances', 'HA'),
-        ('Toys', 'TY'),
-        ('Books', 'BO'),
+        (_('Uncategorized'), 'UN'),
+        (_('Clothing and fashion'), 'CAF'),
+        (_('Supermarket Items'), 'SI'),
+        (_('Home Appliances'), 'HA'),
+        (_('Toys'), 'TY'),
+        (_('Books'), 'BO'),
     ]
     product_title = models.CharField(max_length=100, verbose_name=_('title'))
     product_description = models.TextField(verbose_name=_('description'))

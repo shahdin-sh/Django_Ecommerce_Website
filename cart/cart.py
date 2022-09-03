@@ -20,6 +20,9 @@ class ShoppingCart:
         if product_id not in self.shopping_cart:
             self.shopping_cart[product_id] = {'quantity': quantity}
             self.save()
+        else:
+            self.shopping_cart[product_id] += {'quantity': quantity}
+            self.save()
 
     def delete_from_cart(self, product):
         # delete a product from cart
@@ -45,10 +48,9 @@ class ShoppingCart:
             item['total_price'] = item['product_obj'].product_price * item['quantity']
             yield item
 
-
     def __len__(self):
         # return all amount of products that would save in shopping cart
-        return len(self.shopping_cart.keys())
+        return sum(item['quantity'] for item in self.shopping_cart.values())
 
     def clear(self):
         del self.session['shopping_cart']

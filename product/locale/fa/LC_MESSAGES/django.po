@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-26 16:49+0430\n"
+"POT-Creation-Date: 2022-09-03 17:56+0430\n"
 "PO-Revision-Date: 2022-08-26 16:53+0430\n"
 "Last-Translator:   <shahdin.shahdaei@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\models.py:21
+#, fuzzy
+#| msgid "Categorize"
+msgid "Uncategorized"
+msgstr "دسته بندی ها:"
+
+#: .\models.py:22
+msgid "Clothing and fashion"
+msgstr ""
+
+#: .\models.py:23
+msgid "Supermarket Items"
+msgstr ""
+
+#: .\models.py:24
+msgid "Home Appliances"
+msgstr ""
+
+#: .\models.py:25
+msgid "Toys"
+msgstr ""
+
+#: .\models.py:26
+msgid "Books"
+msgstr ""
 
 #: .\models.py:28
 msgid "title"
@@ -48,55 +74,55 @@ msgstr "قیمت محصول"
 msgid "existence"
 msgstr "موجودیت محصول"
 
-#: .\models.py:34
+#: .\models.py:35
 msgid "cover"
 msgstr "جلد محصول"
 
-#: .\models.py:35
+#: .\models.py:36
 msgid "numbers"
 msgstr "تعداد محصول"
 
-#: .\models.py:36
+#: .\models.py:39
 msgid "classification"
 msgstr "دسته بندی ها"
 
-#: .\models.py:37
+#: .\models.py:41
 msgid "likes_on_product"
 msgstr "امیتاز کاربران به این محصول"
 
-#: .\models.py:55
+#: .\models.py:56
 msgid "perfect"
 msgstr "عالی"
 
-#: .\models.py:56
+#: .\models.py:57
 msgid "good"
 msgstr "خوب"
 
-#: .\models.py:57
+#: .\models.py:58
 msgid "normal"
 msgstr "متوسط"
 
-#: .\models.py:58
+#: .\models.py:59
 msgid "bad"
 msgstr "ضعیف"
 
-#: .\models.py:59
+#: .\models.py:60
 msgid "Very bad"
 msgstr "بسیار ضعیف"
 
-#: .\models.py:61
+#: .\models.py:62
 msgid "comment_text"
 msgstr "متن نظر"
 
-#: .\models.py:64
+#: .\models.py:65
 msgid "comment_datetime_created"
 msgstr "تاریخ ثبت نظر"
 
-#: .\models.py:65
+#: .\models.py:66
 msgid "comment_datetime_modified"
 msgstr "تاریخ ویرایش نظر"
 
-#: .\models.py:68
+#: .\models.py:69
 msgid "product rate"
 msgstr "امتیازدهی به محصول"
 
@@ -109,58 +135,56 @@ msgstr "جزيِیات محصول"
 msgid "$"
 msgstr "تومان"
 
-#: .\templates\product\product_detail_view.html:45
+#: .\templates\product\product_detail_view.html:47
 msgid "Add To Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_detail_view.html:50
+#: .\templates\product\product_detail_view.html:56
 msgid "Categorize"
 msgstr "دسته بندی ها:"
 
-#: .\templates\product\product_detail_view.html:65
+#: .\templates\product\product_detail_view.html:71
 msgid "Product Description"
 msgstr "توضیحات محصول"
 
-#: .\templates\product\product_detail_view.html:107
+#: .\templates\product\product_detail_view.html:113
 msgid "number of comments for"
 msgstr "تعداد دیدگاه برای"
 
-#: .\templates\product\product_detail_view.html:165
+#: .\templates\product\product_detail_view.html:171
 msgid "Add Replay"
 msgstr "افزودن بازخورد"
 
-#: .\templates\product\product_detail_view.html:171
-#: .\templates\product\product_detail_view.html:202
+#: .\templates\product\product_detail_view.html:177
+#: .\templates\product\product_detail_view.html:208
 msgid "Submit"
 msgstr "ثبت"
 
-#: .\templates\product\product_detail_view.html:174
+#: .\templates\product\product_detail_view.html:180
 msgid "Replies"
 msgstr "بازخورد ها"
 
-#: .\templates\product\product_detail_view.html:196
+#: .\templates\product\product_detail_view.html:202
 msgid "Add a Comment"
 msgstr "افزودن نظر"
 
-#: .\views.py:54
+#: .\views.py:56
 msgid "your comment saved successfully"
 msgstr "دیدگاه شما با موفقیت ذخیره شد."
 
-#: .\views.py:78
+#: .\views.py:86
 msgid "your comment changed successfully"
 msgstr "دیدگاه شما با موفقیت تغییر کرد."
 
-#: .\views.py:96
+#: .\views.py:104
 msgid "your comment deleted successfully"
 msgstr "دیدگاه شما با موفقیت حذف شد."
 
-#: .\views.py:112
-msgid "this product added to your interest list successfully"
-msgstr "این محصول با موفقیت به لیست علاقه مندی های شما اضافه شد."
+#~ msgid "this product added to your interest list successfully"
+#~ msgstr "این محصول با موفقیت به لیست علاقه مندی های شما اضافه شد."
 
-#: .\views.py:124
-msgid "this product delete from your interest list successfully"
-msgstr "این محصول با موفقیت از لیست علاقه مندی های شما پاک شد."
+#~ msgid "this product delete from your interest list successfully"
+#~ msgstr "این محصول با موفقیت از لیست علاقه مندی های شما پاک شد."
 
 #, fuzzy
 #~ msgid "comments"
