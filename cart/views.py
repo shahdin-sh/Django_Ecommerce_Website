@@ -8,6 +8,11 @@ from django.views.decorators.http import require_POST
 
 def shopping_cart_view(request):
     shopping_cart = ShoppingCart(request)
+    for item in shopping_cart:
+        item['product_update_quantity_form'] = AddToCartProductForm(initial={
+            'quantity': item['quantity'],
+            'inplace': True,
+        }, product_stock=item['product_obj'].product_price)
     # dic for context
     dic = {
         'shopping_cart': shopping_cart,
@@ -27,8 +32,11 @@ def add_to_cart_view(request, product_id):
             # a dictionary which contains cleaned data only from the fields which have passed the validation tests.
             cleaned_data = form.cleaned_data
             quantity = cleaned_data['quantity']
-            shopping_cart.add_to_cart(product, quantity)
-            messages.success(request, 'this product added to your cart successfully')
+            shopping_cart.add_to_cart(product, quantity, replace_current_quantity=cleaned_data['inplace'])
+            if cleaned_data['inplace']:
+                messages.success(request, 'product quantity updated successfully')
+            elif not cleaned_data['inplace']:
+                messages.success(request, 'this product added to your cart successfully')
         return redirect('cart:shopping_cart_view')
 
 

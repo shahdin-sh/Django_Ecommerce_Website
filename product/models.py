@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.contrib.sessions.models import Session
 
-# Managers
-class ProductManager(models.Manager):
+
+class ProductManager(models.Manager):  # Managers
     def get_queryset(self):
         return super(ProductManager, self).get_queryset().filter(product_existence=True, number_of_products__gt=0)
 
