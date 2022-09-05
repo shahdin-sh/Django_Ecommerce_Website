@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # jalali date
+    'jalali_date',
     # custom apps
     'accounts',
     'pages',

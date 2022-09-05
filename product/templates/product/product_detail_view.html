@@ -1,8 +1,9 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-{% block content %}
+{% load jalali_tags %}
 
+{% block content %}
         {% include 'top_header.html' with main_header=product_detail.product_title %}
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
@@ -107,17 +108,16 @@
                                                                 <div class="d-flex flex-sm-row flex-row">
                                                                     <img src="{{ comment.user.profile_avatar.url }}" alt="Review Avatar" class="review__avatar">
                                                                     <div>
-                                                                        <div class="review__meta">
+                                                                        <div class="review__meta" dir="ltr">
+                                                                             <span class="review__published-date">{{ comment.datetime_created|to_jalali:'%Y/%m/%d' }}</span>
                                                                             <strong class="review__author px-4">{{ comment.user.username }}</strong>
-                                                                            {% if comment in user.comments.all %}
-                                                                                <span>
-                                                                                    <a href="{% url 'edit_user_comments' product_detail.id comment.id %}">ویرایش</a>
-                                                                                     <a href="{% url 'delete_user_comments' product_detail.id comment.id %}">حذف نظر</a>
-                                                                                </span>
-                                                                            {% endif %}
-                                                                            <span class="review__dash">-</span>
-                                                                            <span class="review__published-date">{{ comment.datetime_created }}</span>
                                                                         </div>
+                                                                          {% if comment in user.comments.all %}
+                                                                            <span>
+                                                                                <a href="{% url 'edit_user_comments' product_detail.id comment.id %}">ویرایش</a>
+                                                                                 <a href="{% url 'delete_user_comments' product_detail.id comment.id %}">حذف نظر</a>
+                                                                            </span>
+                                                                        {% endif %}
                                                                           <!-- Product rating Start -->
                                                                         <div class="product-rating">
                                                                             {% if comment.rate == '1' %}
@@ -173,7 +173,7 @@
                                                             <div class="review__meta">
                                                                 <strong class="review__author px-4">{{ replay.user.username }}</strong>
                                                                 <span class="review__dash">-</span>
-                                                                <span class="review__published-date">{{ replay.datetime_created }}</span>
+                                                                <span class="review__published-date">{{ replay.datetime_created|to_jalali:'%Y/%m/%d' }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
