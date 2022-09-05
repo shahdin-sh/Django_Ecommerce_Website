@@ -2,20 +2,8 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% block content %}
-      <!-- Breadcrumb area Start -->
-        <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-                            <h1 class="page-title">{% translate 'Product Detail' %} {{ product_detail.product_title }}</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcrumb area End -->
 
+        {% include 'top_header.html' with main_header=product_detail.product_title %}
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
             <div class="page-content-inner ptb--80">

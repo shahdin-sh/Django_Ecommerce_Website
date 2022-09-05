@@ -4,20 +4,24 @@ from .cart import ShoppingCart
 from .forms import AddToCartProductForm
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+from django.http import Http404
 
 
 def shopping_cart_view(request):
     shopping_cart = ShoppingCart(request)
-    for item in shopping_cart:
-        item['product_update_quantity_form'] = AddToCartProductForm(initial={
-            'quantity': item['quantity'],
-            'inplace': True,
-        }, product_stock=item['product_obj'].product_price)
-    # dic for context
-    dic = {
-        'shopping_cart': shopping_cart,
-    }
-    return render(request, 'cart/shopping_cart.html', dic)
+    if not shopping_cart.is_cart_empty():
+        for item in shopping_cart:
+            item['product_update_quantity_form'] = AddToCartProductForm(initial={
+                'quantity': item['quantity'],
+                'inplace': True,
+            }, product_stock=item['product_obj'].product_price)
+        # dic for context
+        dic = {
+            'shopping_cart': shopping_cart,
+        }
+        return render(request, 'cart/shopping_cart.html', dic)
+    else:
+        raise Http404()
 
 
 @require_POST

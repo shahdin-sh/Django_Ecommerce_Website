@@ -126,10 +126,17 @@
                                     </a>
                                 </li>
                                 <li class="header-toolbar__item mini-cart-item">
-                                    <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
-                                        <i class="flaticon flaticon-shopping-cart"></i>
-                                        <sup class="mini-cart-count">{{ shopping_cart|length }}</sup>
-                                    </a>
+                                    {% if not shopping_cart.is_cart_empty %}
+                                        <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
+                                            <i class="flaticon flaticon-shopping-cart"></i>
+                                            <sup class="mini-cart-count">{{ shopping_cart|length }}</sup>
+                                        </a>
+                                    {% else %}
+                                         <div class="header-toolbar__btn toolbar-btn mini-cart-btn">
+                                            <i class="flaticon flaticon-shopping-cart"></i>
+                                            <sup class="mini-cart-count">{{ shopping_cart|length }}</sup>
+                                         </div>
+                                    {% endif %}
                                 </li>
                                 <li class="header-toolbar__item user-info">
                                     <a href="my-account.html" class="header-toolbar__btn">

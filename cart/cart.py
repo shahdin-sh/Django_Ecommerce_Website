@@ -61,3 +61,9 @@ class ShoppingCart:
         product_ids = self.shopping_cart.keys()
 
         return sum(item['quantity'] * item['product_obj'].product_price for item in self.shopping_cart.values())
+
+    def is_cart_empty(self):
+        if self.shopping_cart == {}:
+            return True
+        else:
+            return False
