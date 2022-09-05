@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-03 17:56+0430\n"
+"POT-Creation-Date: 2022-09-05 16:58+0430\n"
 "PO-Revision-Date: 2022-08-26 16:53+0430\n"
 "Last-Translator:   <shahdin.shahdaei@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,59 +126,64 @@ msgstr "تاریخ ویرایش نظر"
 msgid "product rate"
 msgstr "امتیازدهی به محصول"
 
-#: .\templates\product\product_detail_view.html:11
-msgid "Product Detail"
-msgstr "جزيِیات محصول"
+#: .\templates\product\liked_products.html:17
+#, fuzzy
+#| msgid "likes_on_product"
+msgid "Liked Products"
+msgstr "امیتاز کاربران به این محصول"
 
-#: .\templates\product\product_detail_view.html:34
-#: .\templates\product\product_detail_view.html:36
+#: .\templates\product\product_detail_view.html:22
+#: .\templates\product\product_detail_view.html:24
 msgid "$"
 msgstr "تومان"
 
-#: .\templates\product\product_detail_view.html:47
+#: .\templates\product\product_detail_view.html:35
 msgid "Add To Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_detail_view.html:56
+#: .\templates\product\product_detail_view.html:44
 msgid "Categorize"
 msgstr "دسته بندی ها:"
 
-#: .\templates\product\product_detail_view.html:71
+#: .\templates\product\product_detail_view.html:59
 msgid "Product Description"
 msgstr "توضیحات محصول"
 
-#: .\templates\product\product_detail_view.html:113
+#: .\templates\product\product_detail_view.html:101
 msgid "number of comments for"
 msgstr "تعداد دیدگاه برای"
 
-#: .\templates\product\product_detail_view.html:171
+#: .\templates\product\product_detail_view.html:159
 msgid "Add Replay"
 msgstr "افزودن بازخورد"
 
-#: .\templates\product\product_detail_view.html:177
-#: .\templates\product\product_detail_view.html:208
+#: .\templates\product\product_detail_view.html:165
+#: .\templates\product\product_detail_view.html:196
 msgid "Submit"
 msgstr "ثبت"
 
-#: .\templates\product\product_detail_view.html:180
+#: .\templates\product\product_detail_view.html:168
 msgid "Replies"
 msgstr "بازخورد ها"
 
-#: .\templates\product\product_detail_view.html:202
+#: .\templates\product\product_detail_view.html:190
 msgid "Add a Comment"
 msgstr "افزودن نظر"
 
-#: .\views.py:56
+#: .\views.py:57
 msgid "your comment saved successfully"
 msgstr "دیدگاه شما با موفقیت ذخیره شد."
 
-#: .\views.py:86
+#: .\views.py:87
 msgid "your comment changed successfully"
 msgstr "دیدگاه شما با موفقیت تغییر کرد."
 
-#: .\views.py:104
+#: .\views.py:105
 msgid "your comment deleted successfully"
 msgstr "دیدگاه شما با موفقیت حذف شد."
+
+#~ msgid "Product Detail"
+#~ msgstr "جزيِیات محصول"
 
 #~ msgid "this product added to your interest list successfully"
 #~ msgstr "این محصول با موفقیت به لیست علاقه مندی های شما اضافه شد."
