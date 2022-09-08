@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # jalali date
     'jalali_date',
     # custom apps
@@ -58,7 +59,7 @@ INSTALLED_APPS = [
     'product',
     'rosetta',
     'cart',
-    'persian'
+    'persian',
 ]
 
 SITE_ID = 1

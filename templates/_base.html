@@ -2,6 +2,7 @@
 <html lang="en">
 {% load static %}
 {% load english_to_persian_translate_tags %}
+{% load humanize %}
 
 <head>
     <!-- Required meta tags -->
@@ -124,19 +125,19 @@
                             <ul class="header-toolbar">
                                 <li class="header-toolbar__item">
                                     <a href="{% url 'liked_products_view' %}" class="header-toolbar__btn mx-4">
-                                        <i class="flaticon flaticon-like">{{ user.likes_on_products.count|translate_number }}</i>
+                                        <i class="flaticon flaticon-like">{{ user.likes_on_products.count|intcomma:False|translate_number }}</i>
                                     </a>
                                 </li>
                                 <li class="header-toolbar__item mini-cart-item">
                                     {% if not shopping_cart.is_cart_empty %}
                                         <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                             <i class="flaticon flaticon-shopping-cart"></i>
-                                            <sup class="mini-cart-count">{{ shopping_cart|length|translate_number }}</sup>
+                                            <sup class="mini-cart-count">{{ shopping_cart|length|intcomma:False|translate_number }}</sup>
                                         </a>
                                     {% else %}
                                          <div class="header-toolbar__btn toolbar-btn mini-cart-btn">
                                             <i class="flaticon flaticon-shopping-cart"></i>
-                                            <sup class="mini-cart-count">{{ shopping_cart|length|translate_number }}</sup>
+                                            <sup class="mini-cart-count">{{ shopping_cart|length|intcomma:False|translate_number}}</sup>
                                          </div>
                                     {% endif %}
                                 </li>

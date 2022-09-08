@@ -2,6 +2,8 @@
 {% load i18n %}
 {% block content %}
 {% load english_to_persian_translate_tags %}
+{% load humanize %}
+
 
 {% trans 'CART' as main_header %}
 {% include 'top_header.html' with main_header='CART' %}
@@ -42,7 +44,7 @@
                                                 </td>
                                                 <td class="product-price">
                                                     <span class="product-price-wrapper">
-                                                        <span class="money">{{ item.product_obj.product_price|translate_number }}</span>
+                                                        <span class="money">{{ item.product_obj.product_price|intcomma:False|translate_number }} {% trans "$" %}</span>
                                                     </span>
                                                 </td>
                                                 <td class="product-quantity">
@@ -54,8 +56,8 @@
                                                                    name="quantity"
                                                                    id="qty-1"
                                                                    min="1"
-                                                                   value="{{ item.quantity|translate_number }}"
-                                                                   max="{{ item.product_obj.number_of_products|translate_number }}"
+                                                                   value="{{ item.quantity}}"
+                                                                   max="{{ item.product_obj.number_of_products|translate_number}}"
                                                             >
                                                             {{ item.product_update_quantity_form.inplace}}
                                                              <button type="submit">{% trans 'Update' %}</button>
@@ -64,7 +66,7 @@
                                                 </td>
                                                 <td class="product-total-price">
                                                     <span class="product-price-wrapper">
-                                                        <span class="money">{{ item.total_price|translate_number }}</span>
+                                                        <span class="money">{{ item.total_price|intcomma:False|translate_number }} {% trans "$" %}</span>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -90,7 +92,7 @@
                                         <span>مجموع</span>
                                     </div>
                                     <div class="cart-calculator__item--value">
-                                        <span>{{ shopping_cart.get_total_price }}</span>
+                                        <span>{{ shopping_cart.get_total_price|intcomma:False|translate_number }} {% trans "$" %}</span>
                                     </div>
                                 </div>
                                 <div class="cart-calculator__item order-total">
@@ -99,7 +101,7 @@
                                     </div>
                                     <div class="cart-calculator__item--value">
                                         <span class="product-price-wrapper">
-                                            <span class="money">{{ shopping_cart.get_total_price }}</span>
+                                            <span class="money">{{ shopping_cart.get_total_price|intcomma:False|translate_number }} {% trans "$" %}</span>
                                         </span>
                                     </div>
                                 </div>
