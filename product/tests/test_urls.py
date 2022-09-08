@@ -30,3 +30,7 @@ class TestProductUrls(SimpleTestCase):
     def test_delete_likes_on_products_view_is_resolved(self):
         url = reverse('delete_user_likes_on_product', args=['1'])
         self.assertEqual(resolve(url).func, delete_user_likes_on_products)
+
+    def test_user_likes_view(self):
+        url = reverse('liked_products_view')
+        self.assertEqual(resolve(url).func, liked_products_view)

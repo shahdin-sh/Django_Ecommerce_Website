@@ -3,6 +3,7 @@
 
 
 {% block content %}
+
     {% trans 'Homepage' as main_header %}
     {% include 'top_header.html' with main_header='Homepage' %}
     <h1>Welcome to Ecommerce-website</h1>
@@ -13,5 +14,6 @@
         text-align: center;
     }
     </style>
+     {% include 'cart/shopping_cart_sidebar.html' %}
 {% endblock content %}
 

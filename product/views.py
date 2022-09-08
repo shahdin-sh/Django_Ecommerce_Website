@@ -14,7 +14,6 @@ def products_list_view(request):
     paginator = Paginator(products, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    print(ShoppingCart(request).is_cart_empty())
     # context
     dic = {
         'products': page_obj,
