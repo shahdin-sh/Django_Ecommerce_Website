@@ -32,13 +32,17 @@ class ShoppingCart:
             del self.shopping_cart[product_id]
             self.save()
 
+    def emptying_the_cart(self):
+        del self.session['shopping_cart']
+        self.save()
+
     def save(self):
         # save the shopping cart after every change in session
         self.session.modified = True
 
     def __iter__(self):
         product_ids = self.shopping_cart.keys()
-        products = Product.objects.filter(id__in=product_ids)
+        products = Product.product_manager.filter(id__in=product_ids)
 
         shopping_cart = self.shopping_cart.copy()
 

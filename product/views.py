@@ -62,6 +62,7 @@ def product_detail_view(request, pk):
     # check if this product is in the shopping cart or not
     shopping_cart = ShoppingCart(request)
     cart_keys = shopping_cart.shopping_cart.keys()
+    print(cart_keys)
     is_in_the_cart = Product.objects.filter(id__in=cart_keys, pk=pk).exists()
     # a dic for context
     dic = {

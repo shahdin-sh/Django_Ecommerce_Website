@@ -55,3 +55,8 @@ def remove_from_cart_view(request, product_id):
     messages.warning(request, 'this product deleted from your cart')
     return redirect('product_detail_view', pk=product_id)
 
+
+def emptying_all_of_the_products_from_the_cart(request):
+    shopping_cart = ShoppingCart(request)
+    shopping_cart.emptying_the_cart()
+    return redirect('products_list_view')
