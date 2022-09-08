@@ -2,6 +2,8 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% load jalali_tags %}
+{% load english_to_persian_translate_tags %}
+
 
 {% block content %}
         {% include 'top_header.html' with main_header=product_detail.product_title %}
@@ -20,7 +22,7 @@
 {#                                    {{ product_detail.product_description }}#}
 {#                                </p>#}
                                 <div class="my-5 py-5 product-price-wrapper mb--25">
-                                    <span class="money text-success">{{ product_detail.product_price }} {% trans '$' %}</span>
+                                    <span class="money text-success">{{ product_detail.product_price|translate_number }} {% trans '$' %}</span>
                                     <span class="price-separator">-</span>
                                     <span class="money old-price text-danger">۲۱۰,۰۰۰ {% trans '$' %}</span>
                                 </div>
@@ -30,7 +32,7 @@
                                             {% csrf_token %}
                                             <div class="quantity">
                                                 <input type="number" class="quantity-input" name="quantity"
-                                                       id="qty" value="1" min="1" max="{{ product_detail.number_of_products }}">
+                                                       id="qty" value="1" min="1" max="{{ product_detail.number_of_products|translate_number }}">
                                             </div>
                                             <button type="submit" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
                                                 {% translate 'Add To Cart' %}
@@ -46,7 +48,7 @@
                                         {{ product_detail.product_classification }}
                                     </p>
                                     <p><span class="m-0">تعداد موجود این محصول در انبار:</span>
-                                        {{ product_detail.number_of_products }}
+                                        {{ product_detail.number_of_products|translate_number }}
                                     </p>
                                 </div>
                             </div>
@@ -63,7 +65,7 @@
                                         <span>ویژگی ها</span>
                                     </a>
                                     <a class="m-0 product-data-tab__link nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-selected="true">
-                                        <span>نظرات {{ comments.count }}</span>
+                                        <span>نظرات {{ comments.count|translate_number }}</span>
                                     </a>
                                 </div>
                                 <div class="tab-content product-data-tab__content" id="product-tabContent">
@@ -99,7 +101,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                                         <div class="product-reviews">
-                                            <h3 class="review__title">  {% trans 'number of comments for' %} ---> {{ product_detail.product_title }} ---> {{ comments.count }} </h3>
+                                            <h3 class="review__title">  {% trans 'number of comments for' %} {{ product_detail.product_title }} ---> {{ comments.count|translate_number }}</h3>
                                             <ul class="review__list">
                                                 {% for comment in comments %}
                                                     <li class="review__item">
@@ -109,7 +111,7 @@
                                                                     <img src="{{ comment.user.profile_avatar.url }}" alt="Review Avatar" class="review__avatar">
                                                                     <div>
                                                                         <div class="review__meta" dir="ltr">
-                                                                             <span class="review__published-date">{{ comment.datetime_created|to_jalali:'%Y/%m/%d' }}</span>
+                                                                             <span class="review__published-date">{{ comment.datetime_created|to_jalali:'%Y/%m/%d'|translate_number }}</span>
                                                                             <strong class="review__author px-4">{{ comment.user.username }}</strong>
                                                                         </div>
                                                                           {% if comment in user.comments.all %}
@@ -173,7 +175,7 @@
                                                             <div class="review__meta">
                                                                 <strong class="review__author px-4">{{ replay.user.username }}</strong>
                                                                 <span class="review__dash">-</span>
-                                                                <span class="review__published-date">{{ replay.datetime_created|to_jalali:'%Y/%m/%d' }}</span>
+                                                                <span class="review__published-date">{{ replay.datetime_created|to_jalali:'%Y/%m/%d'|translate_number }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
