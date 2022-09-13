@@ -68,8 +68,8 @@ class UserComments(models.Model):
     is_active = models.BooleanField(default=True, verbose_name='comment_is_active')
     parent = models.ForeignKey("self", blank=True, null=True, on_delete=models.CASCADE, related_name='replies')
     rate = models.CharField(max_length=10, choices=PRODUCT_STARS, blank=True, verbose_name=_('product rate'))
-    name = models.CharField(max_length=20, null=True, blank=True)
-    email = models.EmailField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('name'))
+    email = models.EmailField(max_length=200, null=True, blank=True, verbose_name=_('email'))
 
     # Comment Manager
     objects = models.Manager()  # django default manager

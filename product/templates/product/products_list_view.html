@@ -51,18 +51,20 @@
                                                                 <img src="{{ product.product_cover.url }}" alt="Products">
                                                             </a>
                                                             <div class="ShoppingYar-product-action">
-                                                                {% if user not in product.product_likes.all %}
-                                                                    <div class="product-action d-flex">
-                                                                        <a href="{% url 'user_likes_on_product' product.id %}" class="action-btn">
-                                                                            <i class="flaticon flaticon-like"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                {% else %}
-                                                                     <div class="product-action d-flex">
-                                                                        <a href="{% url 'delete_user_likes_on_product' product.id %}" class="action-btn">
-                                                                            <i class="fas fa-heart"></i>
-                                                                        </a>
-                                                                    </div>
+                                                                {% if user.is_authenticated %}
+                                                                    {% if user not in product.product_likes.all %}
+                                                                        <div class="product-action d-flex">
+                                                                            <a href="{% url 'user_likes_on_product' product.id %}" class="action-btn">
+                                                                                <i class="flaticon flaticon-like"></i>
+                                                                            </a>
+                                                                        </div>
+                                                                    {% else %}
+                                                                         <div class="product-action d-flex">
+                                                                            <a href="{% url 'delete_user_likes_on_product' product.id %}" class="action-btn">
+                                                                                <i class="fas fa-heart"></i>
+                                                                            </a>
+                                                                        </div>
+                                                                    {% endif %}
                                                                 {% endif %}
                                                             </div>
                                                         </figure>

@@ -4,6 +4,7 @@
 {% load jalali_tags %}
 {% load english_to_persian_translate_tags %}
 {% load humanize %}
+{% load static %}
 
 
 {% block content %}
@@ -113,7 +114,7 @@
                                                                         <img src="{{ comment.user.profile_avatar.url }}"
                                                                              alt="User Avatar" class="review__avatar">
                                                                      {% else %}
-                                                                          <img src="default/img_avatar.png"
+                                                                          <img src="{% static 'default/img_avatar.png' %}"
                                                                              alt="Guest Avatar" class="review__avatar">
                                                                      {% endif %}
                                                                     <div>
@@ -132,7 +133,7 @@
                                                                                 <a href="{% url 'edit_user_comments' product_detail.id comment.id %}">ویرایش</a>
                                                                                  <a href="{% url 'delete_user_comments' product_detail.id comment.id %}">حذف نظر</a>
                                                                             </span>
-                                                                        {% endif %}
+                                                                          {% endif %}
                                                                           <!-- Product rating Start -->
                                                                         <div class="product-rating">
                                                                             {% if comment.rate == '1' %}

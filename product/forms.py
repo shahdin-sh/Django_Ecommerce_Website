@@ -27,7 +27,8 @@ class GuestCommentForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if CustomUserModel.objects.filter(email__iexact=email).exists():
+        if CustomUserModel.objects.filter(email__iexact=email).exists() and \
+                UserComments.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError('this email has been given before')
         else:
             return email

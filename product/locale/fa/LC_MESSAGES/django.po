@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 17:35+0430\n"
+"POT-Creation-Date: 2022-09-13 20:57+0430\n"
 "PO-Revision-Date: 2022-09-12 17:37+0430\n"
 "Last-Translator:   <shahdin.shahdaei@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,59 +126,68 @@ msgstr "تاریخ ویرایش نظر"
 msgid "product rate"
 msgstr "امتیازدهی به محصول"
 
+#: .\models.py:71
+msgid "name"
+msgstr ""
+
+#: .\models.py:72
+msgid "email"
+msgstr ""
+
 #: .\templates\product\liked_products.html:17
 #, fuzzy
 #| msgid "likes_on_product"
 msgid "Liked Products"
 msgstr "امیتاز کاربران به این محصول"
 
-#: .\templates\product\product_detail_view.html:26
-#: .\templates\product\product_detail_view.html:28
+#: .\templates\product\product_detail_view.html:27
+#: .\templates\product\product_detail_view.html:29
 msgid "$"
 msgstr "تومان"
 
-#: .\templates\product\product_detail_view.html:39
+#: .\templates\product\product_detail_view.html:40
 msgid "Add To Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_detail_view.html:48
+#: .\templates\product\product_detail_view.html:49
 msgid "Categorize"
 msgstr "دسته بندی ها:"
 
-#: .\templates\product\product_detail_view.html:63
+#: .\templates\product\product_detail_view.html:64
 msgid "Product Description"
 msgstr "توضیحات محصول"
 
-#: .\templates\product\product_detail_view.html:105
+#: .\templates\product\product_detail_view.html:106
 msgid "number of comments for"
 msgstr "تعداد دیدگاه برای"
 
-#: .\templates\product\product_detail_view.html:162
+#: .\templates\product\product_detail_view.html:176
 msgid "Add Replay"
 msgstr "افزودن بازخورد"
 
-#: .\templates\product\product_detail_view.html:168
-#: .\templates\product\product_detail_view.html:200
+#: .\templates\product\product_detail_view.html:182
+#: .\templates\product\product_detail_view.html:219
+#: .\templates\product\product_detail_view.html:228
 msgid "Submit"
 msgstr "ثبت"
 
-#: .\templates\product\product_detail_view.html:171
+#: .\templates\product\product_detail_view.html:187
 msgid "Replies"
 msgstr "بازخورد ها"
 
-#: .\templates\product\product_detail_view.html:193
+#: .\templates\product\product_detail_view.html:210
 msgid "Add a Comment"
 msgstr "افزودن نظر"
 
-#: .\views.py:56
+#: .\views.py:57
 msgid "your comment saved successfully"
 msgstr "دیدگاه شما با موفقیت ذخیره شد."
 
-#: .\views.py:98
+#: .\views.py:116
 msgid "your comment changed successfully"
 msgstr "دیدگاه شما با موفقیت تغییر کرد."
 
-#: .\views.py:116
+#: .\views.py:134
 msgid "your comment deleted successfully"
 msgstr "دیدگاه شما با موفقیت حذف شد."
 

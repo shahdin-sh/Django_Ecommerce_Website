@@ -8,8 +8,7 @@ from django.http import Http404
 from cart.forms import AddToCartProductForm
 from cart.cart import ShoppingCart
 from django.views.decorators.http import require_POST
-
-
+from django.contrib.auth.decorators import login_required
 
 
 def products_list_view(request):
@@ -143,6 +142,7 @@ def delete_user_comments(request, pk, comment_id):
     return render(request, 'product/delete_product_comments.html', dic)
 
 
+@login_required
 def user_likes_on_products(request, pk):
     product = get_object_or_404(Product.product_manager, pk=pk)
     current_user = request.user
@@ -154,6 +154,7 @@ def user_likes_on_products(request, pk):
         raise Http404()
 
 
+@login_required
 def delete_user_likes_on_products(request, pk):
     product = get_object_or_404(Product.product_manager, pk=pk)
     current_user = request.user
@@ -165,6 +166,7 @@ def delete_user_likes_on_products(request, pk):
         raise Http404()
 
 
+@login_required
 def liked_products_view(request):
     current_user = request.user
     user_liked_products = current_user.likes_on_products.all()
