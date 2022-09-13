@@ -11,7 +11,6 @@ class ShoppingCart:
         if not shopping_cart:
             # getting cart info from this dic below
             self.session['shopping_cart'] = {}
-
         self.shopping_cart = self.session['shopping_cart']
 
     def add_to_cart(self, product, quantity=1, replace_current_quantity=False):

@@ -73,19 +73,17 @@ class TestView(TestCase):
         response = client.get(self.products_detail_view)
         self.assertContains(response, self.user_comment_1.id)
 
-    # find out why it gives 200 instead of 201
-    # def test_product_detail_view_POST(self):
-    #     client = Client()
-    #     response = client.post(self.products_detail_view)
-    #     self.assertEqual(response.status_code, 201)
+    def test_product_detail_view_POST(self):
+        pass
 
-    # def test_is_comment_product_product_detail(self):
-    #     pass
+    def test_comment_section_functionality(self):
+        pass
 
-    # def test_is_comment_user_request_user(self):
-    #     pass
+    def test_check_item_in_product_detail_view_dic(self):
+        pass
 
-    # def test_product_detail_view_redirects_to_the_correct_url(self):
-    #     client = Client()
-    #     response = client.post(self.products_detail_view)
-    #     self.assertRedirects(response, self.products_detail_view)
+    def test_edit_user_comments_GET(self):
+        pass
+
+    def test_delete_user_comments_GET(self):
+        pass

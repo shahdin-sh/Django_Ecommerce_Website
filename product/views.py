@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from .models import Product, UserComments
 from django.core.paginator import Paginator
-from .forms import UserCommentsForm
+from .forms import UserCommentsForm, GuestCommentForm
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.http import Http404
 from cart.forms import AddToCartProductForm
 from cart.cart import ShoppingCart
+from django.views.decorators.http import require_POST
+
+
 
 
 def products_list_view(request):
@@ -23,13 +26,13 @@ def products_list_view(request):
 
 
 def product_detail_view(request, pk):
+    print(request.session.values())
     products = Product.product_manager.all()
     product_detail = get_object_or_404(products, pk=pk)
-    comments = UserComments.custom_comment_manager.all().order_by('-datetime_created')
-    # comment section for user started
+    comments = UserComments.custom_comment_manager.filter(product_id=pk).order_by('-datetime_created')
+    # comment section for user start
     if request.method == 'POST':
         comment_form = UserCommentsForm(request.POST)
-
         if comment_form.is_valid():
             # Replay section
             parent_obj = None
@@ -49,30 +52,58 @@ def product_detail_view(request, pk):
                     # assign parent_obj to replay comment
                     replay_comment.parent = parent_obj
             # End of replay section
-            new_comment = comment_form.save(commit=False)
-            new_comment.product = product_detail
-            new_comment.user = request.user
-            new_comment.save()
+            new_user_comment = comment_form.save(commit=False)
+            new_user_comment.product = product_detail
+            new_user_comment.user = request.user
+            new_user_comment.save()
             messages.success(request, _('your comment saved successfully'))
             return redirect('product_detail_view', pk=pk)
-
     else:
         comment_form = UserCommentsForm()
-    # end of comment section
-    # check if this product is in the shopping cart or not
+    try:
+        guest_comment_form = GuestCommentForm(initial={
+                'name': request.session['guest_data']['name'],
+                'email': request.session['guest_data']['email']
+            })
+    except KeyError:
+        guest_comment_form = GuestCommentForm()
+    # check if this product is in the shopping cart or not, defined is in the cart method
     shopping_cart = ShoppingCart(request)
     cart_keys = shopping_cart.shopping_cart.keys()
-    print(cart_keys)
     is_in_the_cart = Product.objects.filter(id__in=cart_keys, pk=pk).exists()
-    # a dic for context
-    dic = {
+    context = {
         'product_detail': product_detail,
         'comment_form': comment_form,
         'comments': comments,
+        # checking if guest data exists
+        'guest_comment_form': guest_comment_form,
         'add_to_cart_form': AddToCartProductForm(request.POST, product_stock=product_detail.number_of_products),
         'is_in_the_cart': is_in_the_cart,
     }
-    return render(request, 'product/product_detail_view.html', dic)
+    return render(request, 'product/product_detail_view.html', context)
+
+
+@require_POST
+def comment_system_for_guests(request, pk):
+    # initializing guest data
+    request.session.get('guest_data')
+    if not request.session.get('guest_data'):
+        request.session['guest_data'] = {}
+    guest_data = request.session['guest_data']
+    product = get_object_or_404(Product.product_manager, pk=pk)
+    if request.method == 'POST':
+        comment_form = GuestCommentForm(request.POST)
+        if comment_form.is_valid():
+            cleaned_data = comment_form.cleaned_data
+            new_comment = comment_form.save(commit=False)
+            guest_data['name'] = cleaned_data['name']
+            guest_data['email'] = cleaned_data['email']
+            guest_data['session_key'] = request.session.session_key
+            request.session.save()
+            print(f'guest_data: {guest_data}')
+            new_comment.product = product
+            new_comment.save()
+            return redirect('product_detail_view', pk=pk)
 
 
 def edit_use_comments(request, pk, comment_id):
@@ -141,4 +172,3 @@ def liked_products_view(request):
         'user_liked_products': user_liked_products
     }
     return render(request, 'product/liked_products.html', dic)
-

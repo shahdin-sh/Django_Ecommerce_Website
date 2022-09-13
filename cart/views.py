@@ -42,9 +42,6 @@ def add_to_cart_view(request, product_id):
             elif not cleaned_data['inplace']:
                 messages.success(request, 'this product added to your cart successfully')
             # check if quantity of product is bigger than a number of products in database
-            if cleaned_data['quantity'] > product.number_of_products:
-                messages.warning(request, f"the quantity that you've choose is unavaliable, you can't choose higher "
-                                          f"than {product.number_of_products}")
         return redirect('cart:shopping_cart_view')
 
 

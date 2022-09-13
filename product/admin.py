@@ -40,7 +40,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class ProductCommentsAdmin(admin.ModelAdmin):
-    list_display = ['replay_or_comment', 'user', 'text', 'datetime_created', 'is_active', 'parent', 'rate', 'product']
+    list_display = ['replay_or_comment', 'user', 'text', 'datetime_created', 'is_active',
+                    'parent', 'rate', 'product', 'name', 'email']
 
     def replay_or_comment(self, obj):
         if not obj.parent:

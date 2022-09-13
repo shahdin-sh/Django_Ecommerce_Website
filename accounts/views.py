@@ -19,6 +19,8 @@ def signup_view(request):
         user = authenticate(username=username, password=password)
         # login() method takes an HttpRequest object and a User object and saves the user’s ID in the session
         login(request, user)
+        # clear guest session except for shopping cart session
+        request.session['guest_data'].clear()
         return redirect('homepage')
     else:
         form = SignupForm()

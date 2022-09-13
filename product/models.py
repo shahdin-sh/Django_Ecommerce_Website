@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.contrib.sessions.models import Session
+from ckeditor.fields import RichTextField
 
 
 class ProductManager(models.Manager):  # Managers
@@ -26,7 +27,7 @@ class Product(models.Model):
         (_('Books'), 'BO'),
     ]
     product_title = models.CharField(max_length=100, verbose_name=_('title'))
-    product_description = models.TextField(verbose_name=_('description'))
+    product_description = RichTextField(blank=True, verbose_name=_('description'))
     product_datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('datetime_created'))
     product_datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
     product_price = models.PositiveIntegerField(default=0, verbose_name=_('price'))
@@ -61,12 +62,14 @@ class UserComments(models.Model):
     ]
     text = models.TextField(verbose_name=_('comment_text'))
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments', blank=True, null=True)
     datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('comment_datetime_created'))
     datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('comment_datetime_modified'))
     is_active = models.BooleanField(default=True, verbose_name='comment_is_active')
     parent = models.ForeignKey("self", blank=True, null=True, on_delete=models.CASCADE, related_name='replies')
     rate = models.CharField(max_length=10, choices=PRODUCT_STARS, blank=True, verbose_name=_('product rate'))
+    name = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
 
     # Comment Manager
     objects = models.Manager()  # django default manager
