@@ -19,11 +19,11 @@ class GuestCommentForm(forms.ModelForm):
         model = UserComments
         fields = ['name', 'email', 'text', 'rate']
 
-    # def __init__(self, request, *args, **kwargs):
-    #     super(GuestCommentForm, self).__init__(*args, **kwargs)
-    #     if self.fields['name'] and self.fields['email'] in request.session['guest_data']:
-    #         self.fields['name'].initial = request.session['guest_data']['name']
-    #         self.fields['email'].initial = request.session['guest_data']['email']
+    def __init__(self, *args, **kwargs):
+        super(GuestCommentForm, self).__init__(*args, **kwargs)
+        self.fields['name'].required = True
+        self.fields['email'].required = True
+        self.fields['rate'].required = False
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

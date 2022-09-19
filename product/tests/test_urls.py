@@ -15,9 +15,13 @@ class TestProductUrls(SimpleTestCase):
         url = reverse('product_detail_view', args=['1'])
         self.assertEqual(resolve(url).func, product_detail_view)
 
+    def test_guest_comment_system_is_resolved(self):
+        url = reverse('guest_comment_system', args=['1'])
+        self.assertEqual(resolve(url).func, comment_system_for_guests)
+
     def test_product_edit_comment_view_is_resolved(self):
         url = reverse('edit_user_comments', args=['1', '1'])
-        self.assertEqual(resolve(url).func, edit_use_comments)
+        self.assertEqual(resolve(url).func, edit_user_comments)
 
     def test_product_delete_comment_view_is_resolved(self):
         url = reverse('delete_user_comments', args=['1', '1'])

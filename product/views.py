@@ -29,7 +29,7 @@ def product_detail_view(request, pk):
     products = Product.product_manager.all()
     product_detail = get_object_or_404(products, pk=pk)
     comments = UserComments.custom_comment_manager.filter(product_id=pk).order_by('-datetime_created')
-    # comment section for user start
+    # start of comment section for users
     if request.method == 'POST':
         comment_form = UserCommentsForm(request.POST)
         if comment_form.is_valid():
@@ -55,10 +55,12 @@ def product_detail_view(request, pk):
             new_user_comment.product = product_detail
             new_user_comment.user = request.user
             new_user_comment.save()
-            messages.success(request, _('your comment saved successfully'))
-            return redirect('product_detail_view', pk=pk)
+        messages.success(request, _('your comment saved successfully'))
+        return redirect('product_detail_view', pk=pk)
     else:
         comment_form = UserCommentsForm()
+    # end of comment section for users
+    # check if guest session exists or not
     try:
         guest_comment_form = GuestCommentForm(initial={
                 'name': request.session['guest_data']['name'],
@@ -66,7 +68,7 @@ def product_detail_view(request, pk):
             })
     except KeyError:
         guest_comment_form = GuestCommentForm()
-    # check if this product is in the shopping cart or not, defined is in the cart method
+    # a method for checking the shopping cart
     shopping_cart = ShoppingCart(request)
     cart_keys = shopping_cart.shopping_cart.keys()
     is_in_the_cart = Product.objects.filter(id__in=cart_keys, pk=pk).exists()
@@ -74,9 +76,8 @@ def product_detail_view(request, pk):
         'product_detail': product_detail,
         'comment_form': comment_form,
         'comments': comments,
-        # checking if guest data exists
         'guest_comment_form': guest_comment_form,
-        'add_to_cart_form': AddToCartProductForm(request.POST, product_stock=product_detail.number_of_products),
+        'add_to_cart_form': AddToCartProductForm(request.POST, product_stock=product_detail.number_of_products,),
         'is_in_the_cart': is_in_the_cart,
     }
     return render(request, 'product/product_detail_view.html', context)
@@ -99,13 +100,15 @@ def comment_system_for_guests(request, pk):
             guest_data['email'] = cleaned_data['email']
             guest_data['session_key'] = request.session.session_key
             request.session.save()
-            print(f'guest_data: {guest_data}')
             new_comment.product = product
             new_comment.save()
-            return redirect('product_detail_view', pk=pk)
+        return redirect('product_detail_view', pk=pk)
+    return render(request, 'product/product_detail_view.html')
 
 
-def edit_use_comments(request, pk, comment_id):
+# this function should be class based view
+@login_required
+def edit_user_comments(request, pk, comment_id):
     current_user = request.user
     user_comments = current_user.comments.filter(is_active=True, parent__isnull=True)
     get_particular_user_comment = get_object_or_404(user_comments, pk=comment_id)
@@ -114,8 +117,8 @@ def edit_use_comments(request, pk, comment_id):
     if request.method == 'POST':
         if edit_form.is_valid():
             edit_form.save()
-            messages.success(request, _('your comment changed successfully'))
-            return redirect('product_detail_view', pk=pk)
+        messages.success(request, _('your comment changed successfully'))
+        return redirect('product_detail_view', pk=pk)
     # dic for context
     dic = {
         'edit_comment_form': edit_form
@@ -123,6 +126,8 @@ def edit_use_comments(request, pk, comment_id):
     return render(request, 'product/edit_product_comments.html', dic)
 
 
+# this function should be class based view
+@login_required
 def delete_user_comments(request, pk, comment_id):
     # product detail for redirect section in template, UserComment get_absolute_url does not work correctly
     products = Product.objects.all().filter(product_existence=True)
